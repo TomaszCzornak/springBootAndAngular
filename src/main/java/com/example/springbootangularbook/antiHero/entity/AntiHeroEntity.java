@@ -20,7 +20,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@RedisHash("AntiHero")
+//@RedisHash("AntiHero")
 public class AntiHeroEntity {
 
 
