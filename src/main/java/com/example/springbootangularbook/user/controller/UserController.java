@@ -1,6 +1,6 @@
-package com.example.springbootangularbook.antiHero.controller;
+package com.example.springbootangularbook.user.controller;
 
-import com.example.springbootangularbook.antiHero.dto.UserDto;
+import com.example.springbootangularbook.user.data.UserDto;
 import com.example.springbootangularbook.user.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

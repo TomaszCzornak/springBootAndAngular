@@ -47,11 +47,8 @@ public class ApplicationUserDetailsService implements UserDetailsService {
         return userEntity;
     }
 
-    private Boolean verifyPasswordHash(
-            String password,
-            byte[] storedHash,
-            byte[] storedSalt
-    ) throws NoSuchAlgorithmException {
+    private Boolean verifyPasswordHash(String password,byte[] storedHash, byte[] storedSalt)
+            throws NoSuchAlgorithmException {
         if (
                 password.isBlank() || password.isEmpty()
         ) throw new IllegalArgumentException(

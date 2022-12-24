@@ -25,16 +25,13 @@ class AuthenticateController {
 
     @RequestMapping(value = "/authenticate")
     @ResponseStatus(HttpStatus.CREATED)
-    public AuthenticationResponse authenticate(
-            @RequestBody AuthenticationRequest req
-    ) throws Exception {
+    public AuthenticationResponse authenticate(@RequestBody AuthenticationRequest req)
+            throws Exception {
         UserEntity user;
         try {
-            user = userDetailsService.authenticate(
-                    req.getEmail(), req.getPassword());
+            user = userDetailsService.authenticate(req.getEmail(), req.getPassword());
         } catch (BadCredentialsException e) {
-            throw new Exception("Incorrect username or password",
-                    e);
+            throw new Exception("Incorrect username or password", e);
         }
         var userDetails = userDetailsService.
                 loadUserByUsername(user.getEmail());

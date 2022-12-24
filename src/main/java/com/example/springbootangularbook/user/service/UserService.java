@@ -1,8 +1,8 @@
 package com.example.springbootangularbook.user.service;
 
-import com.example.springbootangularbook.antiHero.dto.UserDto;
+import com.example.springbootangularbook.user.data.UserDto;
 import com.example.springbootangularbook.user.entity.UserEntity;
-import com.example.springbootangularbook.antiHero.repository.UserRepository;
+import com.example.springbootangularbook.user.repository.UserRepository;
 import com.example.springbootangularbook.exception.BadRequestException;
 import com.example.springbootangularbook.exception.NotFoundException;
 import lombok.AllArgsConstructor;

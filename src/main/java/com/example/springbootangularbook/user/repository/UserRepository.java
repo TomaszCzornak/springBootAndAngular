@@ -1,4 +1,4 @@
-package com.example.springbootangularbook.antiHero.repository;
+package com.example.springbootangularbook.user.repository;
 
 import com.example.springbootangularbook.user.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

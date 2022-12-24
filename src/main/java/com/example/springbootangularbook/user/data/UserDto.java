@@ -1,4 +1,4 @@
-package com.example.springbootangularbook.antiHero.dto;
+package com.example.springbootangularbook.user.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
