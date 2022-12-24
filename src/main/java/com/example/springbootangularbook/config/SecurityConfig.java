@@ -17,37 +17,36 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private final JwtRequestFilter jwtFilter;
     private final ApplicationUserDetailsService userDetailsService;
+    private final JwtRequestFilter jwtFilter;
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService);
+    }
+
+    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-// first chain
+                // first chain
                 .csrf()
                 .disable()
-// second chain
+                // second chain
                 .antMatcher("/**")
                 .authorizeRequests()
-// third chain
+                // third chain
                 .antMatchers("/**")
                 .permitAll()
-// fourth chain
+                // fourth chain
                 .and()
                 .sessionManagement()
-                .sessionCreationPolicy(
-                        SessionCreationPolicy.STATELESS);
-        http.addFilterBefore(jwtFilter,
-                UsernamePasswordAuthenticationFilter.class);
-    }
-    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws
-            Exception {
-        return super.authenticationManagerBean();
-    }
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService);
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }
