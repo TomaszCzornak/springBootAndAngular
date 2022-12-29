@@ -45,4 +45,9 @@ public class UserController {
         userService.updateUser(id, userDto,
                 userDto.getPassword());
     }
+    @ResponseBody()
+    @GetMapping("/reg")
+    public String retString() {
+        return "pusty string";
+    }
 }

@@ -30,16 +30,14 @@ public class UserService {
         return mapper.map(dto, UserEntity.class);
     }
     public List<UserDto> findAllUsers() {
-        var userEntityList =
-                new ArrayList<>(repo.findAll());
+        var userEntityList = new ArrayList<>(repo.findAll());
         return userEntityList
                 .stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
     }
     public UserDto findUserById(final UUID id) {
-        var user = repo
-                .findById(id)
+        var user = repo.findById(id)
                 .orElseThrow(
                         () -> new NotFoundException("User by id " + id +
                                 " was not found")
