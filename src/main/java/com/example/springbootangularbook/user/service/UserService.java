@@ -50,30 +50,20 @@ public class UserService {
         random.nextBytes(salt);
         return salt;
     }
-    private byte[] createPasswordHash(String password, byte[]
-            salt)
-            throws NoSuchAlgorithmException {
+    private byte[] createPasswordHash(String password, byte[] salt) throws NoSuchAlgorithmException {
         var md = MessageDigest.getInstance("SHA-512");
         md.update(salt);
-        return md.digest(
-                password.getBytes(StandardCharsets.UTF_8));
+        return md.digest(password.getBytes(StandardCharsets.UTF_8));
     }
 
-    public UserDto createUser(UserDto userDto, String
-            password)
-            throws NoSuchAlgorithmException {
+    public UserDto createUser(UserDto userDto, String password) throws NoSuchAlgorithmException {
         var user = convertToEntity(userDto);
-        if (password.isBlank()) throw new
-                IllegalArgumentException(
-                "Password is required.");
-        var existsEmail =
-                repo.selectExistsEmail(user.getEmail());
-        if (existsEmail) throw new BadRequestException(
-                "Email " + user.getEmail() + " taken"
-        );
+        if (password.isBlank())
+            throw new IllegalArgumentException("Password is required.");
+        var existsEmail = repo.selectExistsEmail(user.getEmail());
+        if (existsEmail) throw new BadRequestException("Email " + user.getEmail() + " taken");
         byte[] salt = createSalt();
-        byte[] hashedPassword =
-                createPasswordHash(password, salt);
+        byte[] hashedPassword = createPasswordHash(password, salt);
         user.setStoredSalt(salt);
         user.setStoredHash(hashedPassword);
         repo.save(user);

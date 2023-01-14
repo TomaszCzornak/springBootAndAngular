@@ -25,8 +25,7 @@ class AuthenticateController {
 
     @RequestMapping(value = "/authenticate")
     @ResponseStatus(HttpStatus.CREATED)
-    public AuthenticationResponse authenticate(@RequestBody AuthenticationRequest req)
-            throws Exception {
+    public AuthenticationResponse authenticate(@RequestBody AuthenticationRequest req) throws Exception {
         UserEntity user;
         try {
             user = userDetailsService.authenticate(req.getEmail(), req.getPassword());

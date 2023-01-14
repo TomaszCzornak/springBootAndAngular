@@ -31,11 +31,8 @@ public class UserController {
     }
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public UserDto postUser(@Valid @RequestBody UserDto
-                                    userDto)
-            throws NoSuchAlgorithmException {
-        return userService.createUser(userDto,
-                userDto.getPassword());
+    public UserDto postUser(@Valid @RequestBody UserDto userDto) throws NoSuchAlgorithmException {
+        return userService.createUser(userDto, userDto.getPassword());
     }
     @PutMapping("/api/v1/users/{id}")
     public void putUser(

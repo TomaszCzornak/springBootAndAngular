@@ -21,13 +21,11 @@ public class ApplicationUserDetailsService implements UserDetailsService {
     private final UserService userService;
 
     @Override
-    public UserDetails loadUserByUsername(String email)
-            throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return new UserPrincipal(userService.searchByEmail(email));
     }
 
-    public UserEntity authenticate(String email, String password)
-            throws NoSuchAlgorithmException {
+    public UserEntity authenticate(String email, String password) throws NoSuchAlgorithmException {
         if (
                 email.isEmpty() || password.isEmpty()
         ) throw new BadCredentialsException("Unauthorized");
